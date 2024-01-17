@@ -1,5 +1,6 @@
 import { Server } from "socket.io";
 import Redis from "ioredis";
+import prismaClient from "./prisma";
 
 const pub = new Redis({
   host: "redis-68b7ea3-adityakhedekar98906-a6ac.a.aivencloud.com",
@@ -7,6 +8,7 @@ const pub = new Redis({
   username: "default",
   password: "AVNS_fWyaEhwXhDWWazHFC1A",
 });
+
 const sub = new Redis({
   host: "redis-68b7ea3-adityakhedekar98906-a6ac.a.aivencloud.com",
   port: 16633,
@@ -41,10 +43,16 @@ class SocketService {
       });
     });
 
-    sub.on("message", (channel, message) => {
+    sub.on("message", async (channel, message) => {
       if (channel === "MESSAGES") {
         console.log("New Message Published", ">>>", message);
         io.emit("message", message);
+        //
+        await prismaClient.message.create({
+          data: {
+            text: message,
+          },
+        });
       }
     });
   }
