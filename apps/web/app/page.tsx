@@ -16,7 +16,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col h-[85vh]  sm:h-[90vh] pb-4 ">
+    <div className="flex flex-col h-[85vh] sm:h-[90vh] pb-4 ">
       <div className="justify-center flex py-6 px-6">
         <h1 className="text-3xl flex font-bold ">
           <Image src={logo} alt="logo" className="h-10 w-10 mr-2" />
