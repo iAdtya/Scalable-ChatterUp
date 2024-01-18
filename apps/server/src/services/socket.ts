@@ -1,6 +1,7 @@
 import { Server } from "socket.io";
 import Redis from "ioredis";
 import prismaClient from "./prisma";
+import { produceMessage } from "./Kafka";
 
 const pub = new Redis({
   host: "redis-68b7ea3-adityakhedekar98906-a6ac.a.aivencloud.com",
@@ -47,12 +48,15 @@ class SocketService {
       if (channel === "MESSAGES") {
         console.log("New Message Published", ">>>", message);
         io.emit("message", message);
-        //
-        await prismaClient.message.create({
-          data: {
-            text: message,
-          },
-        });
+        //? save this message to database
+        // await prismaClient.message.create({
+        //   data: {
+        //     text: message,
+        //   },
+        // });
+        //? publish this message to kafka
+        await produceMessage(message);
+        console.log("Message Published to Kafka", ">>>", message);
       }
     });
   }
