@@ -30,7 +30,7 @@ export default function Page() {
           className=" bg-slate-900 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] w-full rounded-2xl flex flex-col justify-end overflow-y-auto"
         >
           {messages.map((e, index) => (
-            <div key={index} className="chat chat-end ">
+            <div key={index} className="chat chat-start ">
               <div className="chat-header">
                 {}
                 <time className="text-xs opacity-50 ml-2">{}</time>
