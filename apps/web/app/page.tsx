@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSocket } from "../context/SocketProvider";
 import Image from "next/image";
 import logo from "./chats.png";
@@ -24,30 +24,27 @@ export default function Page() {
         </h1>
       </div>
 
-      {/* <div>
-        {messages.map((e, index) => (
-          <li key={index}>{e}</li>
-        ))}
-      </div> */}
       <div className="flex justify-center px-6 flex-grow ">
         <div
           id="chatbox"
-          className=" bg-slate-900 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] w-full rounded-2xl "
+          className=" bg-slate-900 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] w-full rounded-2xl flex flex-col justify-end overflow-y-auto"
         >
-          <div className="chat chat-start ">
-            <div className="chat-header">
-              Obi-Wan Kenobi
-              <time className="text-xs opacity-50 ml-2">12:45</time>
+          {messages.map((e, index) => (
+            <div key={index} className="chat chat-end ">
+              <div className="chat-header">
+                {}
+                <time className="text-xs opacity-50 ml-2">{}</time>
+              </div>
+              <div className="chat-bubble">{e}</div>
             </div>
-            <div className="chat-bubble">You were the Chosen One!</div>
-          </div>
-          <div className="chat chat-end">
-            <div className="chat-header">
-              Anakin
-              <time className="text-xs opacity-50 ml-2">12:46</time>
-            </div>
-            <div className="chat-bubble">I hate you!</div>
-          </div>
+            // <div className="chat chat-end">
+            //   <div className="chat-header">
+            //     Anakin
+            //     <time className="text-xs opacity-50 ml-2">12:46</time>
+            //   </div>
+            //   <div className="chat-bubble">I hate you!</div>
+            // </div>
+          ))}
         </div>
       </div>
 
@@ -63,7 +60,7 @@ export default function Page() {
 
           <button
             type="submit"
-            className="btn btn-primary ml-4 lg:w-52 md:w-44"
+            className="btn btn-primary ml-4 lg:w-64 md:w-48"
           >
             Send
           </button>

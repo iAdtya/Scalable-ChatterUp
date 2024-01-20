@@ -11,7 +11,7 @@ interface IScoketContext {
   sendMessage: (msg: string) => any;
   messages: string[];
 }
-
+ 
 const SocketContext = React.createContext<IScoketContext | null>(null);
 
 export const useSocket = () => {
