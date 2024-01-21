@@ -6,9 +6,9 @@ import Image from "next/image";
 import logo from "./chats.png";
 
 export default function Page() {
-  const { sendMessage, messages } = useSocket();
+  const { sendMessage, messages, socketId } = useSocket();
   const [message, setMessage] = useState("");
-
+  // console.log(socketId);
   const handleSubmit = (e: any) => {
     e.preventDefault();
     sendMessage(message);
@@ -31,19 +31,8 @@ export default function Page() {
         >
           {messages.map((e, index) => (
             <div key={index} className="chat chat-end ">
-              <div className="chat-header">
-                {}
-                <time className="text-xs opacity-50 ml-2">{}</time>
-              </div>
               <div className="chat-bubble">{e}</div>
             </div>
-            // <div className="chat chat-end">
-            //   <div className="chat-header">
-            //     Anakin
-            //     <time className="text-xs opacity-50 ml-2">12:46</time>
-            //   </div>
-            //   <div className="chat-bubble">I hate you!</div>
-            // </div>
           ))}
         </div>
       </div>

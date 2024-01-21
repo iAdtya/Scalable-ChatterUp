@@ -17,53 +17,45 @@ const sub = new Redis({
   password: "AVNS_fWyaEhwXhDWWazHFC1A",
 });
 
-class SocketService {
-  private _io: Server;
+let _io: Server;
 
-  constructor() {
-    console.log("SocketService constructor Intialized");
-    this._io = new Server({
-      cors: {
-        allowedHeaders: "*",
-        origin: "*",
-      },
-    });
-    sub.subscribe("MESSAGES");
-  }
+const initSocketService = () => {
+  console.log("SocketService constructor Intialized");
+  _io = new Server({
+    cors: {
+      allowedHeaders: "*",
+      origin: "*",
+    },
+  });
+  sub.subscribe("MESSAGES");
+  initListeners();
+};
 
-  public initListeners() {
-    const io = this.io;
-    console.log("initListeners Intialized");
-    io.on("connect", (socket) => {
-      console.log("New Socket Connected", socket.id);
+const initListeners = () => {
+  console.log("initListeners Intialized");
+  _io.on("connect", (socket) => {
+    console.log("New Socket Connected", socket.id);
 
-      socket.on("event:message", async ({ message }: { message: string }) => {
+    socket.on(
+      "event:message",
+      async ({ id, message }: { id: string; message: string }) => {
+        console.log("Received id:", id);
         console.log("New Message Recieved", ">>>", message);
-        //publish this  message to redis
-        await pub.publish("MESSAGES", JSON.stringify({ message }));
-      });
-    });
-
-    sub.on("message", async (channel, message) => {
-      if (channel === "MESSAGES") {
-        console.log("New Message Published", ">>>", message);
-        io.emit("message", message);
-        //? save this message to database
-        // await prismaClient.message.create({
-        //   data: {
-        //     text: message,
-        //   },
-        // });
-        //? publish this message to kafka
-        await produceMessage(message);
-        console.log("Message Published to Kafka", ">>>", message);
+        await pub.publish("MESSAGES", JSON.stringify({ id, message }));
       }
-    });
-  }
+    );
+  });
 
-  get io() {
-    return this._io;
-  }
-}
+  sub.on("message", async (channel, message) => {
+    if (channel === "MESSAGES") {
+      console.log("New Message Published", ">>>", message);
+      _io.emit("message", message);
+      await produceMessage(message);
+      console.log("Message Published to Kafka", ">>>", message);
+    }
+  });
+};
 
-export default SocketService;
+const getIo = () => _io;
+
+export { initSocketService, getIo };
