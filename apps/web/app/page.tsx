@@ -8,9 +8,7 @@ import logo from "./chats.png";
 export default function Page() {
   const { sendMessage, messages, id } = useSocket();
   const [message, setMessage] = useState("");
-
-  console.log("ID state changed", id);
-
+  
   const handleSubmit = (e: any) => {
     e.preventDefault();
     sendMessage(message);
