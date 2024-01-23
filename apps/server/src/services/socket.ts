@@ -28,7 +28,7 @@ const initSocketService = () => {
   _io = new Server({
     cors: {
       allowedHeaders: "*",
-      origin: "https://scalable-chatter-up.vercel.app/",
+      origin: "*",
     },
   });
   sub.subscribe("MESSAGES");
