@@ -6,6 +6,11 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "server": {
+      "dependsOn": [],
+      "outputs": ["apps/server/dist/**"],
+      "command": "tsc -p apps/server"
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
