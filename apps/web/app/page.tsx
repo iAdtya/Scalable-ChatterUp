@@ -6,9 +6,11 @@ import Image from "next/image";
 import logo from "./chats.png";
 
 export default function Page() {
-  const { sendMessage, messages, socketId } = useSocket();
+  const { sendMessage, messages, id } = useSocket();
   const [message, setMessage] = useState("");
-  // console.log(socketId);
+
+  console.log("ID state changed", id);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     sendMessage(message);
@@ -30,8 +32,11 @@ export default function Page() {
           className=" bg-slate-900 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] w-full rounded-2xl flex flex-col justify-end overflow-y-auto"
         >
           {messages.map((e, index) => (
-            <div key={index} className="chat chat-end ">
-              <div className="chat-bubble">{e}</div>
+            <div
+              key={index}
+              className={`chat ${id === e.id ? "chat-end" : "chat-start"}`}
+            >
+              <div className="chat-bubble">{e.message}</div>
             </div>
           ))}
         </div>

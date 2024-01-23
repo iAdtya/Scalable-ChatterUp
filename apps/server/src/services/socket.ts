@@ -31,6 +31,8 @@ const initSocketService = () => {
   initListeners();
 };
 
+const getIo = () => _io;
+
 const initListeners = () => {
   console.log("initListeners Intialized");
   _io.on("connect", (socket) => {
@@ -55,7 +57,5 @@ const initListeners = () => {
     }
   });
 };
-
-const getIo = () => _io;
 
 export { initSocketService, getIo };
