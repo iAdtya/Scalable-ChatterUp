@@ -23,7 +23,7 @@ export const useSocket = () => {
   return state;
 };
 
-const ENDPOINT = "http://localhost:8000";
+const ENDPOINT = "https://scalable-chatterup-production.up.railway.app";
 
 export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<Socket>();

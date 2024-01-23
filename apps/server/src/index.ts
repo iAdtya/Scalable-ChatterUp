@@ -1,6 +1,7 @@
 import http from "http";
 import { initSocketService, getIo } from "./services/socket";
 import { startMessageConsumer } from "./services/Kafka";
+import { error } from "console";
 
 async function init() {
   await startMessageConsumer();
