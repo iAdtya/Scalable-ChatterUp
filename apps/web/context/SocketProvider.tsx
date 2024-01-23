@@ -55,7 +55,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
     _socket.on("connect", () => {
       // Log the socket ID after the connection is established
-      console.log("Socket ID:", _socket.id);
+      console.log("Socket Connected to Server Socket ID:", _socket.id);
       if (_socket.id) {
         setId(_socket.id);
       } else {
