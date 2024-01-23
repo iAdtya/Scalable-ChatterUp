@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@repo/ui": "*",
+    "mixpanel-browser": "^2.48.1",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -19,10 +20,17 @@
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@types/eslint": "^8.56.1",
+    "@types/mixpanel-browser": "^2.48.1",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
+    "@types/uuid": "^9.0.7",
+    "autoprefixer": "^10.4.17",
+    "daisyui": "^4.6.0",
     "eslint": "^8.56.0",
-    "typescript": "^5.3.3"
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "uuid": "^9.0.1"
   }
 }
