@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useSocket } from "../context/SocketProvider";
 import Image from "next/image";
 import logo from "./chats.png";

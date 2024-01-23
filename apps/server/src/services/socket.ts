@@ -2,6 +2,13 @@ import { Server } from "socket.io";
 import Redis from "ioredis";
 import prismaClient from "./prisma";
 import { produceMessage } from "./Kafka";
+import { PostHog } from "posthog-node";
+import { v4 as uuidv4 } from "uuid";
+
+const client = new PostHog("phc_S8xmfQP8rJsrzipKD19mzmmtnk860wodgvpoU9bXNcq", {
+  host: "https://us.posthog.com",
+});
+const userId = uuidv4();
 
 const pub = new Redis({
   host: "redis-68b7ea3-adityakhedekar98906-a6ac.a.aivencloud.com",
@@ -46,7 +53,12 @@ const initListeners = () => {
         await pub.publish("MESSAGES", JSON.stringify({ id, message }));
       }
     );
+    client.capture({
+      distinctId: userId,
+      event: "Message Published",
+    });
   });
+  client.flush();
 
   sub.on("message", async (channel, message) => {
     if (channel === "MESSAGES") {
