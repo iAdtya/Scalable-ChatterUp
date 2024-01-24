@@ -1,6 +1,10 @@
-# Turborepo starter
+# Scalable-ChatterUp
 
-This is an official starter Turborepo.
+
+## Output
+![Screenshot 2024-01-25 045329](https://github.com/iAdtya/Scalable-ChatterUp/assets/93979441/66e75919-2ebd-4aec-9a3f-4b6e34a11a80)
+
+  
 
 ## Using this example
 
