@@ -1,0 +1,102 @@
+Please prepare for the following things :
+1. Resume Walkthrough
+2. Project Functionalities and Explanation/Walkthrough
+3. Proper Self Introduction
+4. Basic Tech questions around the course completed especially Java/Python , JavaScript,
+OOPS Concepts, basic SQL queries, basic programming questions based on array and
+strings.
+5. Communication and Expressing Skills
+
+Mock Interview 1 - Resume & Project Review
+A. What is this all about?
+1. This is to check the Resume Quality and if you are able to give a
+proper walkthrough.
+2. To see if you can explain the projects properly.
+3. You will also be evaluated on your communication skills.
+4. Duration Approx 45 - 50 mins. Followed by a 10 min feedback from
+the interviewer.
+B. What to keep in mind?
+
+1. Introduction: Prepare your introduction that explains your entire
+resume in a nutshell. Be prepared to answer any cross-questions
+asked to you.
+2. Project discussion: You will be grilled on 1-2 projects mentioned in
+your resume. Have a thorough response to what was your role,
+challenges, and learning outcome from it. Better to have an example
+to support your answer.
+3. Behavioral questions: You will be judged on your communication
+and situational awareness skills to see how you handle a difficult
+situation at work.
+
+Classes: Classes are a template for creating objects. They encapsulate data with code to manipulate that data. Classes in JS are built on prototypes but also have some syntax and semantics that are not shared with ES5 class-like semantics.
+
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+  present() {
+    return 'I have a ' + this.carname;
+  }
+}
+
+let myCar = new Car("Ford");
+console.log(myCar.present()); // Outputs: I have a Ford
+
+Objects: An object is an instance of a class. Objects have properties and methods.
+
+let car = {type:"Fiat", model:"500", color:"white"};
+
+Inheritance: Inheritance is an important concept in OOP. It allows you to create a new class that is a modified version of an existing class. In JavaScript, this is achieved with the extends keyword.
+
+class Model extends Car {
+  constructor(brand, mod) {
+    super(brand);
+    this.model = mod;
+  }
+  show() {
+    return this.present() + ', it is a ' + this.model;
+  }
+}
+
+let myModel = new Model("Ford", "Mustang");
+console.log(myModel.show()); // Outputs: I have a Ford, it is a Mustang
+
+Encapsulation: Encapsulation is the packing of data and functions into a single component (like an object), and restricting the access to some of the object's components. In JavaScript, encapsulation can be achieved through closures, or with ES6 classes using getters and setters.
+
+class EncapsulatedCar {
+  constructor(brand) {
+    this._carname = brand;
+  }
+  get carname() {
+    return this._carname;
+  }
+  set carname(x) {
+    this._carname = x;
+  }
+}
+
+let myEncapsulatedCar = new EncapsulatedCar("Ford");
+myEncapsulatedCar.carname = "Volvo"; // Using setter
+console.log(myEncapsulatedCar.carname); // Using getter, Outputs: Volvo
+
+Polymorphism: Polymorphism allows methods to be used in the same way even though they may be behaving differently. The best example of this is when parent class reference is used to refer to a child class object.
+
+class Bird {
+  fly() {
+    return "I can fly";
+  }
+}
+
+class Penguin extends Bird {
+  fly() {
+    return "I can't fly";
+  }
+}
+
+let myBird = new Bird();
+let myPenguin = new Penguin();
+
+console.log(myBird.fly()); // Outputs: I can fly
+console.log(myPenguin.fly()); // Outputs: I can't fly
+
+Remember, JavaScript is a prototype-based language and contains no class statement, such as is found in C++ or Java. This is sometimes confusing for programmers accustomed to languages with a class statement. Instead, JavaScript uses functions as classes.
